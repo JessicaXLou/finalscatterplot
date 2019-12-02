@@ -44,9 +44,10 @@
 
     // add options to dropdown menu
     var options = dropDown.selectAll("option")
-        .data(data)
-        .enter()
-        .append("option");
+        .append(2018)
+        .append(2017)
+        .append(2016)
+        .append(2015);
 
     options.text(function (d) { return d.year; })
         .attr("value", function (d) { return d.year; });
