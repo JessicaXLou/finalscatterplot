@@ -48,8 +48,8 @@
         .enter()
         .append("option");
 
-    options.text(function (d) { return d.time; })
-        .attr("value", function (d) { return d.time; });
+    options.text(function (d) { return d.year; })
+        .attr("value", function (d) { return d.year; });
 
     // add filter functionality to dropdown menu
     dropDown.on("change", function() {
@@ -58,7 +58,7 @@
 
         // change filtered data
         let year = this.value;
-        filteredData = csvData.filter((row) => row.time == year);
+        filteredData = csvData.filter((row) => row.year == year);
 
         //plot new points
         plotData(mapFunctions);
