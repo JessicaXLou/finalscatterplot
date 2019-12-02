@@ -38,16 +38,17 @@
     // draw title and axes labels
     makeLabels();
 
+    let years = [2018, 2017, 2016, 2015];
+
     // add dropdown menu
     let dropDown = d3.select("#filter").append("select")
         .attr("name", "year");
 
     // add options to dropdown menu
     var options = dropDown.selectAll("option")
-        .append(2018)
-        .append(2017)
-        .append(2016)
-        .append(2015);
+        .data(years)
+        .enter()
+        .append("option");
 
     options.text(function (d) { return d.year; })
         .attr("value", function (d) { return d.year; });
