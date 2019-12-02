@@ -50,8 +50,8 @@
         .enter()
         .append("option");
 
-    options.text(function (d) { return d.year; })
-        .attr("value", function (d) { return d.year; });
+    options.text(function (d) { return d; })
+        .attr("value", function (d) { return d; });
 
     // add filter functionality to dropdown menu
     dropDown.on("change", function() {
