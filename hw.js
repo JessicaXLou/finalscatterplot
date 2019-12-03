@@ -23,14 +23,14 @@
     filteredData = csvData.filter((row) => row.year == 2018);
 
     // get arrays of fertility rate data and life Expectancy data
-    let fertility_rate_data = data.map((row) => parseFloat(row["fertility_rate"]));
-    let life_expectancy_data = data.map((row) => parseFloat(row["life_expectancy"]));
+    let shooting_rate_data = data.map((row) => parseFloat(row["__x_"]));
+    let not_shooting_data = data.map((row) => parseFloat(row["__y_"]));
 
     // find data limits
-    let axesLimits = findMinMax(fertility_rate_data, life_expectancy_data);
+    let axesLimits = findMinMax(shooting_rate_data, not_shooting_data);
 
     // draw axes and return scaling + mapping functions
-    let mapFunctions = drawAxes(axesLimits, "fertility_rate", "life_expectancy");
+    let mapFunctions = drawAxes(axesLimits, "__x_", "__y_");
 
     // plot data as points and add tooltip functionality
     plotData(mapFunctions);
@@ -73,18 +73,18 @@
       .attr('x', 100)
       .attr('y', 40)
       .style('font-size', '14pt')
-      .text("Life Expectancy vs Fertility Rate");
+      .text("Frequency of Shooting vs. Non-shooting Crimes by District");
 
     svgContainer.append('text')
       .attr('x', 130)
       .attr('y', 490)
       .style('font-size', '10pt')
-      .text('Fertility');
+      .text('Shooting Crime Frequency');
 
     svgContainer.append('text')
       .attr('transform', 'translate(15, 300)rotate(-90)')
       .style('font-size', '10pt')
-      .text('Life Expectancy');
+      .text('Non-Shooting Crime Frequency');
   }
 
   // plot all the data points on the SVG
