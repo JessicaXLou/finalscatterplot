@@ -73,7 +73,7 @@
       .attr('x', 100)
       .attr('y', 40)
       .style('font-size', '14pt')
-      .text("Frequency of Shooting vs. Non-shooting Crimes by District");
+      .text("Shooting vs. Non-shooting Crimes by District");
 
     svgContainer.append('text')
       .attr('x', 130)
