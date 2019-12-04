@@ -116,8 +116,8 @@
       .enter()
       .append('circle')
         .attr('class', 'point')
-        .attr('cx', (row) => row.values[1].value)
-        .attr('cy', (row) => row.values[0].value)
+        .attr('cx', xMap)
+        .attr('cy', yMap)
         .attr('r', 5)
         .attr('fill', "#4286f4")
   }
