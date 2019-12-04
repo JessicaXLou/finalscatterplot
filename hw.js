@@ -25,11 +25,9 @@
       .key((d) => d["SHOOTING"])
       .rollup((v) => v.length)
       .entries(csvData.filter((row) => row["YEAR"] == 2018 && row["DISTRICT"] != ""));
-    console.log(JSON.stringify(filteredData));
-    filteredData.map((row) => console.log(row.values[1].value));
 
-    let shooting_rate_data = filteredData.map((row) => parseFloat(row["Y"]));
-    let not_shooting_data = filteredData.map((row) => parseFloat(row[""]));
+    let shooting_rate_data = filteredData.map((row) => parseFloat(row.values[1].value));
+    let not_shooting_data = filteredData.map((row) => parseFloat(row.values[0].value));
 
     // find data limits
     let axesLimits = findMinMax(shooting_rate_data, not_shooting_data);
