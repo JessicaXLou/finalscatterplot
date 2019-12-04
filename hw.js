@@ -27,8 +27,8 @@
       .entries(csvData.filter((row) => row["YEAR"] == 2018));
     console.log(JSON.stringify(filteredData));
 
-    let shooting_rate_data = filteredData.map((row) => parseFloat(row["Y"]));
-    let not_shooting_data = filteredData.map((row) => parseFloat(row[""]));
+    let shooting_rate_data = filteredData.map((row) => parseFloat(row["values"]["Y"]));
+    let not_shooting_data = filteredData.map((row) => parseFloat(row["values"][""]));
 
     // find data limits
     let axesLimits = findMinMax(shooting_rate_data, not_shooting_data);
