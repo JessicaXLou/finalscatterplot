@@ -64,10 +64,10 @@
         // change filtered data
         let year = this.value;
         filteredData = d3.nest()
-        .key((d) => d["DISTRICT"])
-        .key((d) => d["SHOOTING"])
-        .rollup((v) => d3.sum(v, (d) => d.amount))
-        .entries(csvData.filter((row) => row["YEAR"] == year));
+          .key((d) => d["DISTRICT"])
+          .key((d) => d["SHOOTING"])
+          .rollup((v) => d3.sum(v, (d) => d.amount))
+          .entries(csvData.filter((row) => row["YEAR"] == year && row["DISTRICT"] != ""));
 
         //plot new points
         plotData(mapFunctions);
@@ -98,7 +98,7 @@
   // and add tooltip functionality
   function plotData(map) {
     // get population data as array
-    let pop_data = filteredData.map((row) => +row.values[0]);
+    let pop_data = filteredData.map((row) => +row.key);
     let pop_limits = d3.extent(pop_data);
 
     // make size scaling function for population
