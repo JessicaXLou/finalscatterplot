@@ -20,15 +20,19 @@
   // make scatter plot with trend line
   function makeScatterPlot(csvData) {
     data = csvData; // assign data as global variable
-    filteredData = d3.nest()
+    shootingData = d3.nest()
       .key((d) => d["DISTRICT"])
-      .key((d) => d["SHOOTING"])
       .rollup((v) => v.length)
-      .entries(csvData.filter((row) => row["YEAR"] == 2018));
-    console.log(JSON.stringify(filteredData));
-
-    let shooting_rate_data = filteredData.map((row) => parseFloat(row["values"]["Y"]));
-    let not_shooting_data = filteredData.map((row) => parseFloat(row["values"][""]));
+      .entries(csvData.filter((row) => ( row["YEAR"] == 2018) && row["SHOOTING"] == "Y" ));
+    notShootingData = d3.nest()
+      .key((d) => d["DISTRICT"])
+      .rollup((v) => v.length)
+      .entries(csvData.filter((row) => ( row["YEAR"] == 2018) && row["SHOOTING"] == "" ));
+    console.log(JSON.stringify(shootingData));
+    console.log(JSON.stringify(notShootingData));
+ß
+    let shooting_rate_data = shootingData.map((row) => parseFloat(row["SHOOTING"]));
+    let not_shooting_data = filteredData.map((row) => parseFloat(row["SHOOTING"]));
 
     // find data limits
     let axesLimits = findMinMax(shooting_rate_data, not_shooting_data);
