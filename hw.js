@@ -70,6 +70,7 @@
           .entries(csvData.filter((row) => row["YEAR"] == year && row["DISTRICT"] != ""));
 
         //plot new points
+        mapFunctions = drawAxes(axesLimits, "Y", "");
         plotData(mapFunctions);
     });
   }
