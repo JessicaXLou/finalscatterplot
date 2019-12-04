@@ -26,7 +26,7 @@
       .rollup((v) => v.length)
       .entries(csvData.filter((row) => row["YEAR"] == 2018));
     console.log(JSON.stringify(filteredData));
-    filteredData.map((row) => console.log(Object.values(row)["Y"]));
+    filteredData.map((row) => console.log(row.values[1].value));
 
     let shooting_rate_data = filteredData.map((row) => parseFloat(row["Y"]));
     let not_shooting_data = filteredData.map((row) => parseFloat(row[""]));
