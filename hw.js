@@ -24,7 +24,7 @@
       .key((d) => d["DISTRICT"])
       .key((d) => d["SHOOTING"])
       .rollup((v) => v.length)
-      .entries(csvData.filter((row) => row["YEAR"] == 2018));
+      .entries(csvData.filter((row) => row["YEAR"] == 2018 && row["DISTRICT"] != ""));
     console.log(JSON.stringify(filteredData));
     filteredData.map((row) => console.log(row.values[1].value));
 
