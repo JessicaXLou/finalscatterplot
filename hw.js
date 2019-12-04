@@ -21,12 +21,11 @@
   function makeScatterPlot(csvData) {
     data = csvData; // assign data as global variable
     filteredData = d3.nest()
-      .key((d) => d.district)
-      .key((d) => d.shooting)
+      .key((d) => d["DISTRICT"])
+      .key((d) => d["SHOOTING"])
       .rollup((v) => d3.sum(v, (d) => d.amount))
-      .entries(csvData.filter((row) => row.year == 2018));
+      .entries(csvData.filter((row) => row["YEAR"] == 2018));
 
-    // get arrays of fertility rate data and life Expectancy data
     let shooting_rate_data = filteredData.map((row) => parseFloat(row["Y"]));
     let not_shooting_data = filteredData.map((row) => parseFloat(row[""]));
 
