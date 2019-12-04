@@ -21,10 +21,10 @@
   function makeScatterPlot(csvData) {
     data = csvData; // assign data as global variable
     filteredData = d3.nest()
-      .key((d) => d.DISTRICT)
-      .key((d) => d.SHOOTING)
-      .rollup((v) => d3.sum(v, (d) => d.amount))
-      .entries(csvData.filter((row) => row.YEAR == 2018));
+      .key((d) => d["DISTRICT"])
+      .key((d) => d["SHOOTING"])
+      .rollup((v) => v.length)
+      .entries(csvData.filter((row) => row["YEAR"] == 2018));
     console.log(JSON.stringify(filteredData));
 
     let shooting_rate_data = filteredData.map((row) => parseFloat(row["Y"]));
