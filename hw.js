@@ -25,6 +25,7 @@
       .key((d) => d["SHOOTING"])
       .rollup((v) => d3.sum(v, (d) => d.amount))
       .entries(csvData.filter((row) => row["YEAR"] == 2018));
+    console.log(JSON.stringify(filteredData));
 
     let shooting_rate_data = filteredData.map((row) => parseFloat(row["Y"]));
     let not_shooting_data = filteredData.map((row) => parseFloat(row[""]));
