@@ -32,7 +32,7 @@
     console.log(JSON.stringify(notShootingData));
 ß
     let shooting_rate_data = shootingData.map((row) => parseFloat(row["SHOOTING"]));
-    let not_shooting_data = filteredData.map((row) => parseFloat(row["SHOOTING"]));
+    let not_shooting_data = notShootingData.map((row) => parseFloat(row["SHOOTING"]));
 
     // find data limits
     let axesLimits = findMinMax(shooting_rate_data, not_shooting_data);
