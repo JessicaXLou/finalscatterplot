@@ -19,12 +19,12 @@
 
   // make scatter plot with trend line
   function makeScatterPlot(csvData) {
-    data = d3.nest()
+    data = csvData; // assign data as global variable
+    filteredData = d3.nest()
       .key((d) => d.district)
       .key((d) => d.shooting)
       .rollup((v) => d3.sum(v, (d) => d.amount))
-      .entries(csvData); // assign data as global variable
-    filteredData = csvData.filter((row) => row.year == 2018);
+      .entries(csvData.filter((row) => row.year == 2018));
 
     // get arrays of fertility rate data and life Expectancy data
     let shooting_rate_data = data.map((row) => parseFloat(row["Y"]));
@@ -64,7 +64,11 @@
 
         // change filtered data
         let year = this.value;
-        filteredData = csvData.filter((row) => row.year == year);
+        filteredData = d3.nest()
+          .key((d) => d.district)
+          .key((d) => d.shooting)
+          .rollup((v) => d3.sum(v, (d) => d.amount))
+          .entries(csvData.filter((row) => row.year == year));
 
         //plot new points
         plotData(mapFunctions);
