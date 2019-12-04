@@ -66,11 +66,10 @@
         filteredData = d3.nest()
           .key((d) => d["DISTRICT"])
           .key((d) => d["SHOOTING"])
-          .rollup((v) => d3.sum(v, (d) => d.amount))
+          .rollup((v) => v.length)
           .entries(csvData.filter((row) => row["YEAR"] == year && row["DISTRICT"] != ""));
 
         //plot new points
-        mapFunctions = drawAxes(axesLimits, "Y", "");
         plotData(mapFunctions);
     });
   }
