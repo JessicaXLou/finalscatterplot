@@ -98,7 +98,7 @@
   // and add tooltip functionality
   function plotData(map) {
     // get population data as array
-    let pop_data = filteredData.map((row) => +row);
+    let pop_data = filteredData.map((row) => +row.values);
     let pop_limits = d3.extent(pop_data);
 
     // make size scaling function for population
