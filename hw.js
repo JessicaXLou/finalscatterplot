@@ -64,10 +64,10 @@
         // change filtered data
         let year = this.value;
         filteredData = d3.nest()
-          .key((d) => d.district)
-          .key((d) => d.shooting)
-          .rollup((v) => d3.sum(v, (d) => d.amount))
-          .entries(csvData.filter((row) => row.year == year));
+        .key((d) => d["DISTRICT"])
+        .key((d) => d["SHOOTING"])
+        .rollup((v) => d3.sum(v, (d) => d.amount))
+        .entries(csvData.filter((row) => row["YEAR"] == year));
 
         //plot new points
         plotData(mapFunctions);
