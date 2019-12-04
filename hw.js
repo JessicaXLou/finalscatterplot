@@ -97,7 +97,7 @@
   // plot all the data points on the SVG
   // and add tooltip functionality
   function plotData(map) {
-    /* // get population data as array
+    // get population data as array
     let pop_data = filteredData.map((row) => +row.key);
     let pop_limits = d3.extent(pop_data);
 
@@ -108,7 +108,7 @@
 
     // mapping functions
     let xMap = map.x;
-    let yMap = map.y;*/
+    let yMap = map.y;
 
     // append data to SVG and plot as points
     svgContainer.selectAll('.dot')
@@ -125,7 +125,7 @@
   // draw the axes and ticks
   function drawAxes(limits, x, y) {
     // return x value from a row of data
-    let xValue = function(d) { return +d[x]; }
+    let xValue = function(d) { return +d.values[1].value; }
 
     // function to scale x value
     let xScale = d3.scaleLinear()
@@ -142,7 +142,7 @@
       .call(xAxis);
 
     // return y value from a row of data
-    let yValue = function(d) { return +d[y]}
+    let yValue = function(d) { return +d.values[0].value}
 
     // function to scale y
     let yScale = d3.scaleLinear()
