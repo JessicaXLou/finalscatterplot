@@ -3,7 +3,8 @@
 (function() {
 
   let data = "no data";
-  let filteredData = "no data"
+  let shootingData = "no data";
+  let notShootingData = "no data";
   let svgContainer = ""; // keep SVG reference in global scope
 
   // load data and make scatter plot after window loads
