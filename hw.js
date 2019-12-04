@@ -3,8 +3,7 @@
 (function() {
 
   let data = "no data";
-  let shootingData = "no data";
-  let notShootingData = "no data";
+  let filteredData = "no data"
   let svgContainer = ""; // keep SVG reference in global scope
 
   // load data and make scatter plot after window loads
@@ -21,19 +20,15 @@
   // make scatter plot with trend line
   function makeScatterPlot(csvData) {
     data = csvData; // assign data as global variable
-    shootingData = d3.nest()
+    filteredData = d3.nest()
       .key((d) => d["DISTRICT"])
+      .key((d) => d["SHOOTING"])
       .rollup((v) => v.length)
-      .entries(csvData.filter((row) => ( row["YEAR"] == 2018) && row["SHOOTING"] == "Y" ));
-    notShootingData = d3.nest()
-      .key((d) => d["DISTRICT"])
-      .rollup((v) => v.length)
-      .entries(csvData.filter((row) => ( row["YEAR"] == 2018) && row["SHOOTING"] == "" && row["DISTRICT"] != ""));
-    console.log(JSON.stringify(shootingData));
-    console.log(JSON.stringify(notShootingData));
+      .entries(csvData.filter((row) => row["YEAR"] == 2018));
+    console.log(JSON.stringify(filteredData));
 
-    let shooting_rate_data = shootingData.map((row) => parseFloat(row["SHOOTING"]));
-    let not_shooting_data = notShootingData.map((row) => parseFloat(row["SHOOTING"]));
+    let shooting_rate_data = filteredData.map((row) => parseFloat(row["Y"]));
+    let not_shooting_data = filteredData.map((row) => parseFloat(row[""]));
 
     // find data limits
     let axesLimits = findMinMax(shooting_rate_data, not_shooting_data);
@@ -69,14 +64,11 @@
 
         // change filtered data
         let year = this.value;
-        shootingData = d3.nest()
-          .key((d) => d["DISTRICT"])
-          .rollup((v) => v.length)
-          .entries(csvData.filter((row) => ( row["YEAR"] == year) && row["SHOOTING"] == "Y" ));
-        notShootingData = d3.nest()
-          .key((d) => d["DISTRICT"])
-          .rollup((v) => v.length)
-          .entries(csvData.filter((row) => ( row["YEAR"] == year) && row["SHOOTING"] == "" ));
+        filteredData = d3.nest()
+        .key((d) => d["DISTRICT"])
+        .key((d) => d["SHOOTING"])
+        .rollup((v) => d3.sum(v, (d) => d.amount))
+        .entries(csvData.filter((row) => row["YEAR"] == year));
 
         //plot new points
         plotData(mapFunctions);
