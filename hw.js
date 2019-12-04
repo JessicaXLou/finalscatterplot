@@ -97,7 +97,7 @@
   // plot all the data points on the SVG
   // and add tooltip functionality
   function plotData(map) {
-    // get population data as array
+    /* // get population data as array
     let pop_data = filteredData.map((row) => +row.key);
     let pop_limits = d3.extent(pop_data);
 
@@ -108,7 +108,7 @@
 
     // mapping functions
     let xMap = map.x;
-    let yMap = map.y;
+    let yMap = map.y;*/
 
     // append data to SVG and plot as points
     svgContainer.selectAll('.dot')
