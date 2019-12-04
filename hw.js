@@ -19,18 +19,21 @@
 
   // make scatter plot with trend line
   function makeScatterPlot(csvData) {
-    data = csvData; // assign data as global variable
+    data = d3.next()
+      .key((d) => d.district)
+      .key((d) => d.shooting)
+      .rollup((v) => d3.sum(v, (d) => d.amount)); // assign data as global variable
     filteredData = csvData.filter((row) => row.year == 2018);
 
     // get arrays of fertility rate data and life Expectancy data
-    let shooting_rate_data = data.map((row) => parseFloat(row["__x_"]));
-    let not_shooting_data = data.map((row) => parseFloat(row["__y_"]));
+    let shooting_rate_data = data.map((row) => parseFloat(row["Y"]));
+    let not_shooting_data = data.map((row) => parseFloat(row[""]));
 
     // find data limits
     let axesLimits = findMinMax(shooting_rate_data, not_shooting_data);
 
     // draw axes and return scaling + mapping functions
-    let mapFunctions = drawAxes(axesLimits, "__x_", "__y_");
+    let mapFunctions = drawAxes(axesLimits, "Y", "");
 
     // plot data as points and add tooltip functionality
     plotData(mapFunctions);
