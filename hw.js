@@ -29,9 +29,10 @@
       .key((d) => d["DISTRICT"])
       .rollup((v) => v.length)
       .entries(csvData.filter((row) => ( row["YEAR"] == 2018) && row["SHOOTING"] == "" ));
+    notShootingData.delete("");
     console.log(JSON.stringify(shootingData));
     console.log(JSON.stringify(notShootingData));
-ß
+
     let shooting_rate_data = shootingData.map((row) => parseFloat(row["SHOOTING"]));
     let not_shooting_data = notShootingData.map((row) => parseFloat(row["SHOOTING"]));
 
@@ -69,11 +70,14 @@
 
         // change filtered data
         let year = this.value;
-        filteredData = d3.nest()
-        .key((d) => d["DISTRICT"])
-        .key((d) => d["SHOOTING"])
-        .rollup((v) => d3.sum(v, (d) => d.amount))
-        .entries(csvData.filter((row) => row["YEAR"] == year));
+        shootingData = d3.nest()
+          .key((d) => d["DISTRICT"])
+          .rollup((v) => v.length)
+          .entries(csvData.filter((row) => ( row["YEAR"] == year) && row["SHOOTING"] == "Y" ));
+        notShootingData = d3.nest()
+          .key((d) => d["DISTRICT"])
+          .rollup((v) => v.length)
+          .entries(csvData.filter((row) => ( row["YEAR"] == year) && row["SHOOTING"] == "" ));
 
         //plot new points
         plotData(mapFunctions);
