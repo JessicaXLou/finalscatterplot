@@ -22,7 +22,8 @@
     data = d3.nest()
       .key((d) => d.district)
       .key((d) => d.shooting)
-      .rollup((v) => d3.sum(v, (d) => d.amount)); // assign data as global variable
+      .rollup((v) => d3.sum(v, (d) => d.amount))
+      .entries(csvData); // assign data as global variable
     filteredData = csvData.filter((row) => row.year == 2018);
 
     // get arrays of fertility rate data and life Expectancy data
