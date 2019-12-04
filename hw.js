@@ -28,8 +28,7 @@
     notShootingData = d3.nest()
       .key((d) => d["DISTRICT"])
       .rollup((v) => v.length)
-      .entries(csvData.filter((row) => ( row["YEAR"] == 2018) && row["SHOOTING"] == "" ));
-    notShootingData.delete("");
+      .entries(csvData.filter((row) => ( row["YEAR"] == 2018) && row["SHOOTING"] == "" && row["DISTRICT"] != ""));
     console.log(JSON.stringify(shootingData));
     console.log(JSON.stringify(notShootingData));
 
