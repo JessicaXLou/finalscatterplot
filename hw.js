@@ -19,7 +19,7 @@
 
   // make scatter plot with trend line
   function makeScatterPlot(csvData) {
-    data = d3.next()
+    data = d3.nest()
       .key((d) => d.district)
       .key((d) => d.shooting)
       .rollup((v) => d3.sum(v, (d) => d.amount)); // assign data as global variable
