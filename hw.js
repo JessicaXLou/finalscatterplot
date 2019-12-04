@@ -27,8 +27,8 @@
       .entries(csvData.filter((row) => row.year == 2018));
 
     // get arrays of fertility rate data and life Expectancy data
-    let shooting_rate_data = data.map((row) => parseFloat(row["Y"]));
-    let not_shooting_data = data.map((row) => parseFloat(row[""]));
+    let shooting_rate_data = filteredData.map((row) => parseFloat(row.value["Y"]));
+    let not_shooting_data = filteredData.map((row) => parseFloat(row[""]));
 
     // find data limits
     let axesLimits = findMinMax(shooting_rate_data, not_shooting_data);
