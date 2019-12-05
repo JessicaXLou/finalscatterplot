@@ -89,7 +89,7 @@
       .text('Shooting Crime Frequency');
 
     svgContainer.append('text')
-      .attr('transform', 'translate(15, 300)rotate(-90)')
+      .attr('transform', 'translate(25, 300)rotate(-90)')
       .style('font-size', '10pt')
       .text('Non-Shooting Crime Frequency');
   }
