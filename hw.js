@@ -22,12 +22,13 @@
     data = csvData; // assign data as global variable
     filteredData = d3.nest()
       .key((d) => d["DISTRICT"])
+      .key((d) => d["YEAR"])
       .key((d) => d["SHOOTING"])
       .rollup((v) => v.length)
       .entries(csvData.filter((row) => row["DISTRICT"] != ""));
     
-    let shooting_rate_data = filteredData.map((row) => parseFloat(row.values[1].value));
-    let not_shooting_data = filteredData.map((row) => parseFloat(row.values[0].value));
+    let shooting_rate_data = filteredData.map((row) => parseFloat(row.values.map((row2) => row2.values[1].value)));
+    let not_shooting_data = filteredData.map((row) => parseFloat(row.values.map((row2) => row2.values[0].value)));
 
     // find data limits
     let axesLimits = findMinMax(shooting_rate_data, not_shooting_data);
