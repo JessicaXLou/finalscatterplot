@@ -24,7 +24,7 @@
       .key((d) => d["DISTRICT"])
       .key((d) => d["SHOOTING"])
       .rollup((v) => v.length)
-      .entries(csvData.filter(row["DISTRICT"] != ""));
+      .entries(csvData.filter((row) => row["DISTRICT"] != ""));
 
     let shooting_rate_data = filteredData.map((row) => parseFloat(row.values[1].value));
     let not_shooting_data = filteredData.map((row) => parseFloat(row.values[0].value));
