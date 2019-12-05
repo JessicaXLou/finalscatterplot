@@ -24,8 +24,7 @@
       .key((d) => d["DISTRICT"])
       .key((d) => d["SHOOTING"])
       .rollup((v) => v.length)
-      .entries(csvData.filter((row) => row["YEAR"] == 2015 && row["DISTRICT"] != ""));
-    console.log(JSON.stringify(filteredData));
+      .entries(csvData.filter((row) => row["YEAR"] == 2018 && row["DISTRICT"] != ""));
     
     let shooting_rate_data = filteredData.map((row) => parseFloat(row.values[1].value));
     let not_shooting_data = filteredData.map((row) => parseFloat(row.values[0].value));
@@ -176,7 +175,7 @@
     let xMax = d3.max(x);
 
     // get min/max y values
-    let yMin = d3.min(y);
+    let yMin = 1026;
     let yMax = d3.max(y);
 
     // return formatted min/max data as an object
