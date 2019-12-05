@@ -83,7 +83,7 @@
       .text("Shooting vs. Non-shooting Crimes by District");
 
     svgContainer.append('text')
-      .attr('x', 175)
+      .attr('x', 200)
       .attr('y', 490)
       .style('font-size', '10pt')
       .text('Shooting Crime Frequency');
@@ -130,7 +130,7 @@
     // function to scale x value
     let xScale = d3.scaleLinear()
       .domain([limits.xMin - 0.5, limits.xMax + 0.5]) // give domain buffer room
-      .range([50, 450]);
+      .range([100, 500]);
 
     // xMap returns a scaled x value from a row of data
     let xMap = function(d) { return xScale(xValue(d)); };
