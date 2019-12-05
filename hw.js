@@ -10,7 +10,7 @@
   window.onload = function() {
     svgContainer = d3.select('body')
       .append('svg')
-      .attr('width', 500)
+      .attr('width', 550)
       .attr('height', 500);
     // d3.csv is basically fetch but it can be be passed a csv file as a parameter
     d3.csv("crime.csv")
@@ -77,19 +77,19 @@
   // make title and axes labels
   function makeLabels() {
     svgContainer.append('text')
-      .attr('x', 100)
+      .attr('x', 125)
       .attr('y', 40)
       .style('font-size', '14pt')
       .text("Shooting vs. Non-shooting Crimes by District");
 
     svgContainer.append('text')
-      .attr('x', 130)
+      .attr('x', 175)
       .attr('y', 490)
       .style('font-size', '10pt')
       .text('Shooting Crime Frequency');
 
     svgContainer.append('text')
-      .attr('transform', 'translate(5, 300)rotate(-90)')
+      .attr('transform', 'translate(15, 300)rotate(-90)')
       .style('font-size', '10pt')
       .text('Non-Shooting Crime Frequency');
   }
