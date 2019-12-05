@@ -10,7 +10,7 @@
   window.onload = function() {
     svgContainer = d3.select('body')
       .append('svg')
-      .attr('width', 550)
+      .attr('width', 500)
       .attr('height', 500);
     // d3.csv is basically fetch but it can be be passed a csv file as a parameter
     d3.csv("crime.csv")
@@ -25,7 +25,7 @@
       .key((d) => d["SHOOTING"])
       .rollup((v) => v.length)
       .entries(csvData.filter((row) => row["DISTRICT"] != ""));
-
+    
     let shooting_rate_data = filteredData.map((row) => parseFloat(row.values[1].value));
     let not_shooting_data = filteredData.map((row) => parseFloat(row.values[0].value));
 
@@ -83,19 +83,19 @@
   // make title and axes labels
   function makeLabels() {
     svgContainer.append('text')
-      .attr('x', 125)
+      .attr('x', 100)
       .attr('y', 40)
       .style('font-size', '14pt')
       .text("Shooting vs. Non-shooting Crimes by District");
 
     svgContainer.append('text')
-      .attr('x', 175)
+      .attr('x', 130)
       .attr('y', 490)
       .style('font-size', '10pt')
       .text('Shooting Crime Frequency');
 
     svgContainer.append('text')
-      .attr('transform', 'translate(15, 300)rotate(-90)')
+      .attr('transform', 'translate(5, 300)rotate(-90)')
       .style('font-size', '10pt')
       .text('Non-Shooting Crime Frequency');
   }
@@ -136,7 +136,7 @@
     // function to scale x value
     let xScale = d3.scaleLinear()
       .domain([limits.xMin - 0.5, limits.xMax + 0.5]) // give domain buffer room
-      .range([100, 500]);
+      .range([50, 450]);
 
     // xMap returns a scaled x value from a row of data
     let xMap = function(d) { return xScale(xValue(d)); };
@@ -144,7 +144,7 @@
     // plot x-axis at bottom of SVG
     let xAxis = d3.axisBottom().scale(xScale);
     svgContainer.append("g")
-      .attr('transform', 'translate(50, 500)')
+      .attr('transform', 'translate(0, 450)')
       .call(xAxis);
 
     // return y value from a row of data
@@ -161,7 +161,7 @@
     // plot y-axis at the left of SVG
     let yAxis = d3.axisLeft().scale(yScale);
     svgContainer.append('g')
-      .attr('transform', 'translate(100, 0)')
+      .attr('transform', 'translate(50, 0)')
       .call(yAxis);
 
     // return mapping and scaling functions
