@@ -25,6 +25,7 @@
       .key((d) => d["SHOOTING"])
       .rollup((v) => v.length)
       .entries(csvData.filter((row) => row["YEAR"] == 2015 && row["DISTRICT"] != ""));
+    console.log(JSON.stringify(filteredData));
     
     let shooting_rate_data = filteredData.map((row) => parseFloat(row.values[1].value));
     let not_shooting_data = filteredData.map((row) => parseFloat(row.values[0].value));
@@ -41,7 +42,7 @@
     // draw title and axes labels
     makeLabels();
 
-    let years = [2015, 2016, 2017, 2018];
+    let years = [2018, 2017, 2016, 2015];
 
     // add dropdown menu
     let dropDown = d3.select("#filter").append("select")
